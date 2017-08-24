@@ -229,15 +229,11 @@ Value * VerifyBasebandFn(const char *name, State *state,
     }
 
     ret = 0;
-    for (auto& modem_version : args) {
+    for (auto& baseband_version : args) {
         if (strncmp(baseband_version.c_str(), current_baseband_version, strlen(baseband_version.c_str())) == 0) {
             ret = 1;
             break;
         }
-    }
-
-    if (ret == 0) {
-        uiPrintf(state, "ERROR: It appears you are running an unsupported baseband.");
     }
 
     return StringValue(strdup(ret ? "1" : "0"));
@@ -261,15 +257,11 @@ Value * VerifyTrustZoneFn(const char *name, State *state,
     }
 
     ret = 0;
-    for (auto& modem_version : args) {
+    for (auto& tz_version : args) {
         if (strncmp(tz_version.c_str(), current_tz_version, strlen(tz_version.c_str())) == 0) {
             ret = 1;
             break;
         }
-    }
-
-    if (ret == 0) {
-        uiPrintf(state, "ERROR: It appears you are running an unsupported TZ.");
     }
 
     return StringValue(strdup(ret ? "1" : "0"));
